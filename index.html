@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>The Weather Thing</title>
-    <link rel="icon" type="image/png" href="./icon-v2.png">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/momoko8260/CwaWeather-frontend/refs/heads/main/ae077e05-6dfe-40d0-a38c-bbc5336dfa6c.png">
     <link rel="apple-touch-icon" href="./icon-v2.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./icon-v2.png">
 
@@ -31,16 +31,18 @@
             -moz-osx-font-smoothing:grayscale;
             overflow-x: hidden;
             position: relative;
+            /* 中文直接最粗 */
+            font-weight: 900;
         }
 
         /* 強制把所有圓角改為 0，符合你的需求（針對矩形元件） */
         * { border-radius: 0 !important; }
 
         /* 英文字體專用類別（如果要套在英文標題上） */
-        .english { font-family: "Times New Roman", "Noto Serif", serif; }
+        .english { font-family: "Times New Roman", "Noto Serif", serif; font-weight:700; }
 
         /* 中文字體加粗，確保明體感覺厚重 */
-        .chinese-strong { font-weight: 800; }
+        .chinese-strong { font-weight: 900; }
 
         /* --------------------
            視覺：標題/狀態列
@@ -49,7 +51,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px 20px;
+            padding: 10px 18px;
             background: rgba(0,0,0,0.6);
             border-bottom: 2px solid rgba(229,9,20,0.2);
             position: sticky;
@@ -57,24 +59,14 @@
             z-index: 50;
         }
 
-        .title { 
-            font-size: 1.25rem;
-            letter-spacing: 2px;
-            color: var(--accent-red-strong);
-            text-shadow:
-                0 0 6px rgba(229,9,20,0.45),
-                0 0 12px rgba(229,9,20,0.25);
-            font-weight: 900;
-        }
-
         .location-pill{
             border: 1px solid rgba(229,9,20,0.4);
             color: var(--accent-red);
             padding: 6px 12px;
-            font-weight: 700;
+            font-weight: 900;
         }
 
-        .update-pill{ color: rgba(229,9,20,0.9); font-size:0.85rem; }
+        .update-pill{ color: rgba(229,9,20,0.9); font-size:0.85rem; font-weight:700; }
 
         /* --------------------
            容器
@@ -104,7 +96,7 @@
             background: transparent;
             color: var(--accent-red-strong);
             border: none;
-            font-weight: 800;
+            font-weight: 900;
             font-size: 0.95rem;
             text-shadow: 0 0 6px rgba(229,9,20,0.35);
         }
@@ -112,7 +104,7 @@
         .hero-temp-container{ display:flex; align-items:center; gap:12px; justify-content:flex-start; }
         .hero-icon{ font-size:4.5rem; filter: drop-shadow(0 6px 6px rgba(0,0,0,0.7)); }
         .hero-temp{ font-size:4.25rem; font-weight:900; color:var(--accent-red-strong); }
-        .hero-desc{ font-size:1.2rem; margin-top:6px; color:var(--accent-red); font-weight:800; }
+        .hero-desc{ font-size:1.2rem; margin-top:6px; color:var(--accent-red); font-weight:900; }
 
         /* 顯示降雨機率（確保出現） */
         .rain-prob { font-size:0.9rem; color: rgba(255,255,255,0.7); margin-top:6px; }
@@ -133,9 +125,9 @@
         .scroll-container::-webkit-scrollbar{ display:none; }
 
         .mini-card{ min-width:140px; border:1px solid rgba(229,9,20,0.85); padding:12px; background:transparent; text-align:center; }
-        .mini-time{ font-weight:800; color:var(--accent-red-strong); margin-bottom:6px; }
+        .mini-time{ font-weight:900; color:var(--accent-red-strong); margin-bottom:6px; }
         .mini-icon{ font-size:2.25rem; margin:6px 0; }
-        .mini-temp{ font-weight:800; }
+        .mini-temp{ font-weight:900; }
         .mini-rain{ font-size:0.85rem; color:rgba(255,255,255,0.75); margin-top:6px; }
 
         /* --------------------
@@ -152,7 +144,7 @@
                 0 0 6px rgba(229,9,20,0.9),
                 0 0 18px rgba(229,9,20,0.55),
                 0 0 40px rgba(255,27,45,0.25);
-            font-weight:900;
+            font-weight:700; /* 英文稍淡一點的粗度 */
         }
 
         /* --------------------
@@ -241,16 +233,13 @@
     <div class="vhs-overlay" aria-hidden="true"></div>
 
     <div class="status-bar">
-        <div class="title english">The Weather Thing</div>
-        <div style="display:flex;gap:10px;align-items:center;">
-            <div class="location-pill chinese-strong">📍 臺中</div>
-            <div id="updateTime" class="update-pill">更新中...</div>
-        </div>
+        <div class="location-pill chinese-strong">📍 臺中</div>
+        <div id="updateTime" class="update-pill">更新中...</div>
     </div>
 
     <div class="container">
 
-        <div class="title-headline flicker glitch" data-text="THE WEATHER THING">THE WEATHER THING</div>
+        <div class="title-headline flicker glitch english" data-text="THE WEATHER THING">THE WEATHER THING</div>
 
         <div id="heroCard" class="hero-card">
             <!-- 內容由 JS 動態注入 -->
@@ -260,7 +249,7 @@
                 <div>
                     <div class="hero-temp">--°</div>
                     <div class="hero-desc">讀取中...</div>
-                    <div class="rain-prob">降雨機率：--%</div>
+                    <div class="rain-prob">降雨機率：--</div>
                 </div>
             </div>
 
@@ -309,7 +298,14 @@
             return "🌤️";
         }
 
+        function ensurePercent(val){
+            if(val==null) return "--";
+            const s = String(val).trim();
+            return s.endsWith('%') ? s : (s + '%');
+        }
+
         function getAdvice(rainProb, maxTemp) {
+            // parseInt works even if rainProb has '%'
             let rainIcon = "🌂";
             let rainText = "不用帶傘";
             if (parseInt(rainProb) > 30) {
@@ -356,7 +352,7 @@
                     <div>
                         <div class="hero-temp">${avgTemp}°</div>
                         <div class="hero-desc">${current.weather}</div>
-                        <div class="rain-prob">降雨機率：${current.rain}%</div>
+                        <div class="rain-prob">降雨機率：${ensurePercent(current.rain)}</div>
                     </div>
                 </div>
 
@@ -364,7 +360,7 @@
                     <div class="advice-item">
                         <div class="advice-icon">${advice.rainIcon}</div>
                         <div class="advice-text">${advice.rainText}</div>
-                        <div style="font-size:0.75rem; color:rgba(255,255,255,0.7); margin-top:6px;">降雨率 ${current.rain}%</div>
+                        <div style="font-size:0.75rem; color:rgba(255,255,255,0.7); margin-top:6px;">降雨率 ${ensurePercent(current.rain)}</div>
                     </div>
                     <div class="advice-item">
                         <div class="advice-icon">${advice.clothIcon}</div>
@@ -390,7 +386,7 @@
                         <div class="mini-time">${p}</div>
                         <div class="mini-icon">${getWeatherIcon(f.weather)}</div>
                         <div class="mini-temp">${f.minTemp}° - ${f.maxTemp}°</div>
-                        <div class="mini-rain">💧 降雨 ${f.rain}%</div>
+                        <div class="mini-rain">💧 降雨 ${ensurePercent(f.rain)}</div>
                     </div>
                 `;
             });
